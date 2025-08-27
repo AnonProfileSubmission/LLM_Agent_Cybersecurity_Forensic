@@ -1,11 +1,19 @@
-# LLM-based Cybersecurity Forensics Agent
+# Tshark Expert plus Logs Architecture
 
-This project implements a LangGraph-based AI agent capable of performing autonomous forensic analysis on network events captured in `.pcap` files.  
-Given a benchmark dataset, the agent detects vulnerabilities (e.g., CVEs), identifies affected services, and produces structured reports. 
+This project implements a LangGraph-based AI agent capable of performing autonomous forensic analysis on network events captured in .pcap files.  
+The architecture structure represents the ***Tshark Expert plus logs***.  
+We reporte in the following the architecture of the ***Tshark Expert*** alone:  
 
-The current version represent the ***Tshark expert + logs***. The system is provided with two subagents
-- The tshark expert, with the ability of executing tshark commands, refining them through searches in the wireshark manual and reasoning over previous errors. Once it receives an high level analysis to be performed by the orchestrator, reasons over it and craft a tshark command to obtain an output that is then returned to the main agent.
-- The log reporter, which receives all log files appended one after the other and is assigned with the task of producing a report to be used by the main_agent as a reference of log's content. 
+<img width="438" height="436" alt="image" src="https://github.com/user-attachments/assets/8a418e16-4180-4a82-ab56-c19dff57db05" />  
+
+Then, the previous agent is provided as a tool to the ***Single Agent plus log Analyzer*** architecture:     
+
+<img width="383" height="693" alt="image" src="https://github.com/user-attachments/assets/e8d60078-a9be-4c20-b747-0cf97d873f7a" />  
+
+
+The two subagents allow to:
+- The tshark expert has the ability of executing tshark commands, refining them through searches in the wireshark manual and reasoning over previous errors. Once it receives an high level analysis to be performed by the orchestrator, reasons over it and craft a tshark command to obtain an output that is then returned to the main agent.
+- The log reporter receives all log files appended one after the other and is assigned with the task of producing a report to be used by the main_agent as a reference of log's content. 
 
 
 Finally, the main agent has the ability to search online and reason to provide a final report with all the evidences.
@@ -160,7 +168,5 @@ Specify the provider name first, then append the model identifier in the same fo
 
 Some benchmark events may be highly token-intensive. Analyzing partial network traces often requires providing a large amount of input tokens.
 Make sure that your plan and tier (for whichever model you use) support a sufficiently high tokens-per-minute rate to run the evaluation. 
-
-
 
 ---
