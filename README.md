@@ -1,9 +1,11 @@
-# LLM-based Cybersecurity Forensics Agent
+# Single Agent Architecture
 
 This project implements a LangGraph-based AI agent capable of performing autonomous forensic analysis on network events captured in `.pcap` files.  
-Given a benchmark dataset, the agent detects vulnerabilities (e.g., CVEs), identifies affected services, and produces structured reports. 
+The architecture structure represents the ***Single Agent***, reported in the image below:
 
-The current version represent the ***Single agent***. The system receives the complete list of frames and is equipped with a tool to open and inspect one or more paylods. 
+<img width="422" height="602" alt="image" src="https://github.com/user-attachments/assets/1eb524c8-fa49-4a42-bac1-03e65e9ec447" />  
+ 
+Given a benchmark dataset, the agent detects vulnerabilities (e.g., CVEs), identifies affected services, and produces structured reports. The system receives the complete list of frames and is equipped with a tool to open and inspect one or more paylods. 
 
 ---
 
