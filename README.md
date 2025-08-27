@@ -1,4 +1,4 @@
-# LLM-based Cybersecurity Forensics Agent
+# Tshark Expert Architecture
 
 This project implements a LangGraph-based AI agent capable of performing autonomous forensic analysis on network events captured in .pcap files.  
 The architecture structure represents the ***Tshark Expert***, reported in the image below:
