@@ -1,9 +1,15 @@
 # LLM-based Cybersecurity Forensics Agent
 
-This project implements a LangGraph-based AI agent capable of performing autonomous forensic analysis on network events captured in `.pcap` files.  
-Given a benchmark dataset, the agent detects vulnerabilities (e.g., CVEs), identifies affected services, and produces structured reports. 
+This project implements a LangGraph-based AI agent capable of performing autonomous forensic analysis on network events captured in .pcap files.  
+The architecture structure represents the ***Tshark Expert***, reported in the image below:
 
-The current version represent the ***Tshark expert***. The system is provided with a subagent with the ability of executing tshark commands, refining them through searches in the wireshark manual and reasoning over previous errors. The tshark expert, once it receives an high level analysis to be performed by the orchestrator, reasons over it and craft a tshark command to obtain an output that is then returned to the main agent. The latter have the ability to search online and reason to provide a final report with all the evidences.
+<img width="439" height="436" alt="image" src="https://github.com/user-attachments/assets/d6a2c9e5-2c20-4c6d-aa3a-43937cbc5f4c" />  
+
+The previous agent is provided as a tool to the ***Single Agent*** architecture:  
+
+<img width="442" height="614" alt="image" src="https://github.com/user-attachments/assets/563a6786-5b2d-404c-ac4c-9f9792f8b828" />  
+
+The system is provided with a subagent with the ability of executing tshark commands, refining them through searches in the wireshark manual and reasoning over previous errors. The tshark expert, once it receives an high level analysis to be performed by the orchestrator, reasons over it and craft a tshark command to obtain an output that is then returned to the main agent. The latter have the ability to search online and reason to provide a final report with all the evidences.
 
 ---
 
