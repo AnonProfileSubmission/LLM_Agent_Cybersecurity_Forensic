@@ -9,7 +9,7 @@ The previous agent is provided as a tool to the ***Single Agent*** architecture:
 
 <img width="442" height="614" alt="image" src="https://github.com/user-attachments/assets/563a6786-5b2d-404c-ac4c-9f9792f8b828" />  
 
-The system is provided with a subagent with the ability of executing tshark commands, refining them through searches in the wireshark manual and reasoning over previous errors. The tshark expert, once it receives an high level analysis to be performed by the orchestrator, reasons over it and craft a tshark command to obtain an output that is then returned to the main agent. The latter have the ability to search online and reason to provide a final report with all the evidences.
+The subagent has the ability of executing tshark commands, refining them through searches in the wireshark manual and reasoning over previous errors. The tshark expert, once it receives an high level analysis to be performed by the orchestrator, reasons over it and craft a tshark command to obtain an output that is then returned to the main agent. The latter have the ability to search online and reason to provide a final report with all the evidences.
 
 ---
 
