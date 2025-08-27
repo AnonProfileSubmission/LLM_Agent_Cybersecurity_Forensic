@@ -1,9 +1,30 @@
-# LLM-based Cybersecurity Forensics Agent
+# Flow Reporter Agent
 
-This project implements a LangGraph-based AI agent capable of performing autonomous forensic analysis on network events captured in `.pcap` files.  
+In the current branch is implemented a LangGraph-based AI agent capable of performing autonomous forensic analysis on network events captured in `.pcap` files.  
+The architecture structure represents the ***Flow Reporter***, reported in the image below:  
+
+<img width="270" height="433" alt="image" src="https://github.com/user-attachments/assets/bbf213c1-9cc5-4a6f-8476-0d6024ac3b63" />  
+ 
 Given a benchmark dataset, the agent detects vulnerabilities (e.g., CVEs), identifies affected services, and produces structured reports. 
 
-The current version represent the ***Flow reporter*** that does not include log analysis in the flow of execution. The system first analyses each tcp flow through a PCAP_flows_analyzer, then instantiates an agent to loop on findings, make research online and provide a final report with all findings related to the forensic task. 
+The system first analyses each tcp flow through a PCAP_flows_analyzer, then instantiates an agent to loop on findings, make research online and provide a final report with all findings related to the forensic task. 
+
+---
+
+## How to switch architecture  
+
+We have designed and experimented with **five different agent architectures**, each exploring a distinct input and analysis workflow.  
+All architectures are available in this repository, organized into separate Git branches:  
+
+- **main** → *Flow Reporter*: a lightweight pipeline that generates forensic reports directly from network flows.  
+- **single_agent** → *Single-Agent Baseline*: a minimal architecture where a single agent handles the full forensic analysis.
+- **tshark_expert** → *Tshark Expert*: a multi-agent setup focused on executing arbitrary `tshark` commands to extract insights from PCAP traces.  
+- **tshark_expert_plus_logs** → *Tshark Expert + Logs*: an extended version that combines `tshark`-based analysis with system log inspection for richer context.  
+- **flow_reporter_plus_logs** → *Pipeline of Agents*: a multi-agent pipeline where three specialized agents collaborate sequentially, combining flow analysis, log inspection, and forensic reasoning for more accurate CVE identification.  
+
+Each branch represents a step in our exploration of how **different coordination strategies (single-agent vs. multi-agent pipelines)** impact performance, accuracy, and token efficiency when applied to **cybersecurity forensic tasks**.  
+
+Each architecture can be tested by simply switching to the corresponding branch and following the instructions in each README. 
 
 ---
 
@@ -183,19 +204,3 @@ Make sure that your plan and tier (for whichever model you use) support a suffic
 
 ---
 
-## How to switch architecture  
-
-We have designed and experimented with **five different agent architectures**, each exploring a distinct input and analysis workflow.  
-All architectures are available in this repository, organized into separate Git branches:  
-
-- **main** → *Flow Reporter*: a lightweight pipeline that generates forensic reports directly from network flows.  
-- **single_agent** → *Single-Agent Baseline*: a minimal architecture where a single agent handles the full forensic analysis.
-- **tshark_expert** → *Tshark Expert*: a multi-agent setup focused on executing arbitrary `tshark` commands to extract insights from PCAP traces.  
-- **tshark_expert_plus_logs** → *Tshark Expert + Logs*: an extended version that combines `tshark`-based analysis with system log inspection for richer context.  
-- **flow_reporter_plus_logs** → *Pipeline of Agents*: a multi-agent pipeline where three specialized agents collaborate sequentially, combining flow analysis, log inspection, and forensic reasoning for more accurate CVE identification.  
-
-Each branch represents a step in our exploration of how **different coordination strategies (single-agent vs. multi-agent pipelines)** impact performance, accuracy, and token efficiency when applied to **cybersecurity forensic tasks**.  
-
-Each architecture can be tested by simply switching to the corresponding branch and following the instructions in each README. 
-
----
