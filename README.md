@@ -1,9 +1,9 @@
-# Flow Reporter Agent
+# Flow Reporter Agent for malware infected devices
 
 In the current branch is implemented a LangGraph-based AI agent capable of performing autonomous forensic analysis on network events captured in `.pcap` files.  
 The architecture structure represents the ***Flow Reporter***, reported in the image below:  
 
-<img width="270" height="433" alt="image" src="https://github.com/user-attachments/assets/bbf213c1-9cc5-4a6f-8476-0d6024ac3b63" />  
+![alt text](architecture/flow_reporter.png)   
  
 Given a benchmark dataset, the agent detects vulnerabilities (e.g., CVEs), identifies affected services, and produces structured reports. 
 
@@ -13,15 +13,14 @@ The system first analyses each tcp flow through a PCAP_flows_analyzer, then inst
 
 ## How to switch architecture  
 
-We have designed and experimented with **four different agent architectures**, each exploring a distinct input and analysis workflow.  
-All architectures and use cases are available in this repository, organized into separate Git branches:  
+We have designed and experimented with **five different agent architectures**, each exploring a distinct input and analysis workflow.  
+All architectures are available in this repository, organized into separate Git branches:  
 
 - **main** → *Flow Reporter*: a lightweight pipeline that generates forensic reports directly from network flows.  
 - **single_agent** → *Single-Agent Baseline*: a minimal architecture where a single agent handles the full forensic analysis.
 - **tshark_expert** → *Tshark Expert*: a multi-agent setup focused on executing arbitrary `tshark` commands to extract insights from PCAP traces.  
 - **tshark_expert_plus_logs** → *Tshark Expert + Logs*: an extended version that combines `tshark`-based analysis with system log inspection for richer context.  
-reasoning for more accurate CVE identification.  
-- **malware_traffic** → makes use of the *Flow Reporter* architecture to analyze traffic captured on devices compromised by malware. It analyzes traffic inspired by real-world scenarios (from [here](https://www.malware-traffic-analysis.net/training-exercises.html)), extracts Indicators of Compromise (IOCs), profiles the victim host (hostname, IP, MAC, Windows username), and generates a structured incident report describing the compromise and the malware's network behavior.
+- **flow_reporter_plus_logs** → *Pipeline of Agents*: a multi-agent pipeline where three specialized agents collaborate sequentially, combining flow analysis, log inspection, and forensic reasoning for more accurate CVE identification.  
 
 Each branch represents a step in our exploration of how **different coordination strategies (single-agent vs. multi-agent pipelines)** impact performance, accuracy, and token efficiency when applied to **cybersecurity forensic tasks**.  
 
@@ -45,6 +44,10 @@ project-root/
 │   │   │   └── eventID_<n>/             # One folder per forensic challenge
 │   │   └── tasks/                       # Tasks metadata
 │   │       └── data.json                # JSON file containing all tasks
+│   │
+│   ├── tls_termination_events/          # Test set with traffic captured on infected devices
+│   │   └── traffic_exercises/           # Exercise examples on infected devices
+│   │       └── eventID_<n>              # One folder per challenge
 │   │
 │   └── web_browsing_traffic/           # Non-malicious traffic samples
 │       ├── raw/                         # Raw PCAPs
@@ -132,7 +135,7 @@ Run the following command from the `src/` directory:
 #### Executing one of the two benchmarks (CFA or test set):
 
 ```bash
-python run_agent.py
+python run_tls_terminatiom.py
 ```
 
 The script will:
@@ -168,15 +171,44 @@ The final output will be the same reported before without perfornance metrics, a
 
 ---
 
-##  Structure of the Benchmark
+## Structure of the Benchmark
 
-The benchmark is designed to evaluate the agent’s ability to perform forensic analysis on malicious network traffic (there is always an attempted attack against a web service). Thus, for each event, it is assumed that an attack has occurred. The goal of the agent is to:
+The benchmark is designed to evaluate the agent’s ability to perform forensic analysis on malicious network traffic.  
+The dataset includes two categories of events:
+
+---
+
+### 1. Web-Service Attack Traffic 
+
+These events contain network traffic where an attempted attack against a web service is always present.  
+For each event, it is assumed that an exploitation attempt occurred.  
+In this scenario, the agent’s objectives are to:
 
 - **Determine the affected service**
-- **Detect the correct CVE ID**, if applicable
+- **Detect the correct CVE**
 - **Assess whether the service is vulnerable**
 - **Assess whether the attack was successful**
 - **Generate a concise report**
+
+---
+
+### 2. Malware-Infected Device Traffic 
+
+Other events focus on host machines infected by malware, using real-world samples adapted from [here](https://www.malware-traffic-analysis.net/training-exercises.html)
+
+In these cases, the analysis shifts from detecting a single CVE to identifying the malware’s activity and profiling the victim machine.  
+The agent must extract Indicators of Compromise (IOCs) and reconstruct the behaviour of the infected system.
+
+For malware-focused events, the agent returns a **different structured report**, produced through the `final_answer_formatter` tool.  
+The structure is as follows:
+
+### Malware Analysis Report Format
+
+- **executive_summary including IOCs**  
+- **victim_hostname**  
+- **victim_ip**  
+- **victim_mac**  
+- **victim_windows_user_account_name**  
 ---
 ## How to specify model and provider
 

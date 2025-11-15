@@ -1,0 +1,136 @@
+------------------------------------------------------------------------
+Count:6 Event#3.750 2021-02-08 15:59 UTC
+ET POLICY Lets Encrypt Free SSL Cert Observed
+162.241.149.195 -> 10.2.8.101
+IPVer=4 hlen=5 tos=0 dlen=1500 ID=0 flags=0 offset=0 ttl=0 chksum=27137
+Protocol: 6 sport=443 -> dport=49736
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=56248 chksum=0
+------------------------------------------------------------------------
+Count:1 Event#3.767 2021-02-08 16:00 UTC
+ET POLICY External IP Lookup api.ipify.org
+10.2.8.101 -> 54.235.147.252
+IPVer=4 hlen=5 tos=0 dlen=204 ID=0 flags=0 offset=0 ttl=0 chksum=56542
+Protocol: 6 sport=49754 -> dport=80
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=47744 chksum=0
+------------------------------------------------------------------------
+Count:10 Event#3.768 2021-02-08 16:00 UTC
+ETPRO MALWARE Tordal/Hancitor/Chanitor Checkin
+10.2.8.101 -> 213.5.229.12
+IPVer=4 hlen=5 tos=0 dlen=443 ID=0 flags=0 offset=0 ttl=0 chksum=60612
+Protocol: 6 sport=49755 -> dport=80
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=30910 chksum=0
+------------------------------------------------------------------------
+Count:1 Event#3.769 2021-02-08 16:00 UTC
+ET POLICY HTTP Request on Unusual Port Possibly Hostile
+10.2.8.101 -> 198.211.10.238
+IPVer=4 hlen=5 tos=0 dlen=40 ID=8878 flags=2 offset=0 ttl=128 chksum=62457
+Protocol: 6 sport=49758 -> dport=8080
+
+Seq=2871987428 Ack=1221200613 Off=5 Res=0 Flags=***A**** Win=65535 urp=56826 chksum=0
+------------------------------------------------------------------------
+Count:3 Event#3.770 2021-02-08 16:00 UTC
+ET SHELLCODE Possible TCP x86 JMP to CALL Shellcode Detected
+198.211.10.238 -> 10.2.8.101
+IPVer=4 hlen=5 tos=0 dlen=159 ID=0 flags=0 offset=0 ttl=0 chksum=54833
+Protocol: 6 sport=8080 -> dport=49758
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=8722 chksum=0
+------------------------------------------------------------------------
+Count:3 Event#3.774 2021-02-08 16:00 UTC
+ET POLICY exe download via HTTP - Informational
+10.2.8.101 -> 8.208.10.147
+IPVer=4 hlen=5 tos=0 dlen=219 ID=0 flags=0 offset=0 ttl=0 chksum=37972
+Protocol: 6 sport=49757 -> dport=80
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=51520 chksum=0
+------------------------------------------------------------------------
+Count:5 Event#3.777 2021-02-08 16:00 UTC
+ET POLICY Binary Download Smaller than 1 MB Likely Hostile
+8.208.10.147 -> 10.2.8.101
+IPVer=4 hlen=5 tos=0 dlen=1162 ID=0 flags=0 offset=0 ttl=0 chksum=37029
+Protocol: 6 sport=80 -> dport=49757
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=10912 chksum=0
+------------------------------------------------------------------------
+Count:5 Event#3.782 2021-02-08 16:00 UTC
+ET INFO Packed Executable Download
+8.208.10.147 -> 10.2.8.101
+IPVer=4 hlen=5 tos=0 dlen=1162 ID=0 flags=0 offset=0 ttl=0 chksum=37029
+Protocol: 6 sport=80 -> dport=49757
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=10912 chksum=0
+------------------------------------------------------------------------
+Count:1 Event#3.787 2021-02-08 16:00 UTC
+ETPRO MALWARE Meterpreter or Other Reverse Shell SSL Cert
+198.211.10.238 -> 10.2.8.101
+IPVer=4 hlen=5 tos=0 dlen=1176 ID=0 flags=0 offset=0 ttl=0 chksum=53816
+Protocol: 6 sport=443 -> dport=49759
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=21749 chksum=0
+------------------------------------------------------------------------
+Count:250 Event#3.788 2021-02-08 16:00 UTC
+ETPRO MALWARE Cobalt Strike Beacon Observed
+10.2.8.101 -> 198.211.10.238
+IPVer=4 hlen=5 tos=0 dlen=430 ID=0 flags=0 offset=0 ttl=0 chksum=54562
+Protocol: 6 sport=49760 -> dport=8080
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=9750 chksum=0
+------------------------------------------------------------------------
+Count:32 Event#3.789 2021-02-08 16:00 UTC
+ET POLICY PE EXE or DLL Windows file download HTTP
+8.208.10.147 -> 10.2.8.101
+IPVer=4 hlen=5 tos=0 dlen=1162 ID=0 flags=0 offset=0 ttl=0 chksum=37029
+Protocol: 6 sport=80 -> dport=49757
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=10912 chksum=0
+------------------------------------------------------------------------
+Count:3 Event#3.821 2021-02-08 16:00 UTC
+ET MALWARE VMProtect Packed Binary Inbound via HTTP - Likely Hostile
+8.208.10.147 -> 10.2.8.101
+IPVer=4 hlen=5 tos=0 dlen=1500 ID=0 flags=0 offset=0 ttl=0 chksum=36691
+Protocol: 6 sport=80 -> dport=49757
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=64861 chksum=0
+------------------------------------------------------------------------
+Count:1 Event#3.825 2021-02-08 16:00 UTC
+ET POLICY External IP Lookup (ipify .org)
+10.2.8.101 -> 54.235.147.252
+IPVer=4 hlen=5 tos=0 dlen=264 ID=0 flags=0 offset=0 ttl=0 chksum=56482
+Protocol: 6 sport=49761 -> dport=80
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=8884 chksum=0
+------------------------------------------------------------------------
+Count:2 Event#3.828 2021-02-08 16:00 UTC
+ET MALWARE Win32/Ficker Stealer Activity
+185.100.65.29 -> 10.2.8.101
+IPVer=4 hlen=5 tos=0 dlen=81 ID=15075 flags=0 offset=0 ttl=128 chksum=62171
+Protocol: 6 sport=80 -> dport=49763
+
+Seq=405699802 Ack=3790664959 Off=5 Res=0 Flags=***AP*** Win=64240 urp=46503 chksum=0
+------------------------------------------------------------------------
+Count:2 Event#3.829 2021-02-08 16:00 UTC
+ET MALWARE Win32/Ficker Stealer Activity M3
+10.2.8.101 -> 185.100.65.29
+IPVer=4 hlen=5 tos=0 dlen=48 ID=11072 flags=2 offset=0 ttl=128 chksum=49823
+Protocol: 6 sport=49763 -> dport=80
+
+Seq=3790664959 Ack=405699843 Off=5 Res=0 Flags=***AP*** Win=64199 urp=18464 chksum=0
+------------------------------------------------------------------------
+Count:5 Event#3.883 2021-02-08 16:01 UTC
+ET POLICY HTTP POST on unusual Port Possibly Hostile
+10.2.8.101 -> 198.211.10.238
+IPVer=4 hlen=5 tos=0 dlen=432 ID=0 flags=0 offset=0 ttl=0 chksum=54560
+Protocol: 6 sport=49821 -> dport=8080
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=24014 chksum=0
+------------------------------------------------------------------------
+Count:5 Event#3.884 2021-02-08 16:01 UTC
+ET HUNTING GENERIC SUSPICIOUS POST to Dotted Quad with Fake Browser 1
+10.2.8.101 -> 198.211.10.238
+IPVer=4 hlen=5 tos=0 dlen=432 ID=0 flags=0 offset=0 ttl=0 chksum=54560
+Protocol: 6 sport=49821 -> dport=8080
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=24014 chksum=0

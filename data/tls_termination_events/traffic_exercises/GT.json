@@ -1,0 +1,207 @@
+{
+    "eventID_0": {
+        "background": "You work as an analyst at a Security Operation Center (SOC). Someone contacts your team to report a coworker has downloaded a suspicious file after searching for Google Authenticator. The caller provides some information similar to social media posts at:\nhttps://www.linkedin.com/posts/unit42_2025-01-22-wednesday-a-malicious-ad-led-activity-7288213662329192450-ky3V/\nhttps://x.com/Unit42_Intel/status/1882448037030584611\nBased on the caller's initial information, you confirm there was an infection. You retrieve a packet capture (pcap) of the associated traffic. Reviewing the traffic, you find several indicators matching details from a Github page referenced in the above social media posts. After confirming an infection happened, you begin writing an incident report.",
+        "url": "https://www.malware-traffic-analysis.net/2025/01/22/index.html",
+        "Victim_Host_Name": "DESKTOP-L8C5GSJ",
+        "Victim_IP_Address": "10.1.17.215",
+        "Victim_MAC_Address": "00:d0:b7:26:4a:74",
+        "Victim_Windows_User_Account_Name": "shutchenson",
+        "IOC": {
+            "Probable fake software site": "authenticatoor.org (but might be impossible to find, it's a client hello)",
+            "IP_Addresses_C2_traffic": [
+                "5.252.153.241",
+                "45.125.66.32",
+                "45.125.66.252"
+            ]
+        }
+    },
+    "eventID_1": {
+        "background": "You work as a analyst at a Security Operation Center (SOC) for a medical research facility specializing in nemotodes. Alerts on traffic in your network indicate someone has been infected. You don't know which is more disgusting, the nemotodes or the malware.",
+        "url": "https://www.malware-traffic-analysis.net/2024/11/26/index.html",
+        "executive_summary": "On Tuesday 2024-11-26 at 04:50 UTC, a Windows host was infected with NetSupport RAT, likely delivered from modandcrackedapk.com after viewing a site named classicgrand.com.",
+        "Victim_Host_Name": "DESKTOP-B8TQK49",
+        "Victim_IP_Address": "10.11.26.183",
+        "Victim_MAC_Address": "d0:57:7b:ce:fc:8b",
+        "Victim_Windows_User_Account_Name": "oboomwald",
+        "IOC": {
+            "NetSupport RAT traffic": "194.180.191.164:443 – POST http://194.180.191.164/fakeurl.htm",
+            "SmartApeSG (ZPHP)/Fake Updates domain": "modandcrackedapk.com",
+            "Likely compromised site": "classicgrand.com"
+        }
+    },
+    "eventID_2": {
+        "background": "A Windows host was infected, and it seems to be from WarmCookie malware.",
+        "url": "https://www.malware-traffic-analysis.net/2024/08/15/index.html",
+        "executive_summary": "On Thursday 2024-08-15 at approximately 00:11 UTC, a Windows host used by Pierce Lucero was infected with WarmCookie malware.",
+        "Victim_Host_Name": "DESKTOP-H8ALZBV",
+        "Victim_IP_Address": "10.8.15.133",
+        "Victim_MAC_Address": "00:1c:bf:03:54:82",
+        "Victim_Windows_User_Account_Name": "plucero",
+        "IOC": {
+            "ZIP_Download": [
+                "104.21.55.70:80 – quote.checkfedexexp.com – GET /managements?16553a25e45250a41fd5&endeds=MIGpq&JStx=59bf050d37df88a9-ade43358-eaa1220b-0571422b-0f33e6aa150e86bafd0ed4&Ld=9d7502d88d752a27b1d00587309184b5a215"
+            ],
+            "Follow-up download (unknown content)": "172.67.170.169:443 – https://business.checkfedexexp.com/data-privacy?zj=ZzqRKxVRQ&pOd=GEokiOXFwH&sourcedp=tQMQJlIo&Tfocontent=IxGTZjXqxJ&Jr_cid=9464552&L=8174388",
+            "DLL download": "http://72.5.43.29/data/0f60a3e7baecf2748b1c8183ed37d1e4",
+            "POST-infection traffic": [
+                "72.5.43.29:80 – 72.5.43.29 - POST /",
+                "72.5.43.29:80 – 72.5.43.29 - GET /"
+            ]
+        }
+    },
+    "eventID_3": {
+        "background": "",
+        "url": "https://www.malware-traffic-analysis.net/2024/07/30/index.html",
+        "executive_summary": "On Tuesday 2024-07-30 at approximately 02:40 UTC, a Windows host used by Clark Collier was infected with STRRAT malware.",
+        "Victim_Host_Name": "DESKTOP-SKBR25F",
+        "Victim_IP_Address": "172.16.1.66",
+        "Victim_MAC_Address": "00:1e:64:ec:f3:08",
+        "Victim_Windows_User_Account_Name": "ccollier",
+        "IOC": {
+            "Suspicious traffic to file sharing domains": [
+                "port 443 - github.com - HTTPS traffic",
+                "port 443 - objects.githubusercontent.com - HTTPS traffic",
+                "port 443 - repo1.maven.org - HTTPS traffic"
+            ],
+            "Post-infection traffic for STRRAT": "141.98.10.69 port 12132 - TCP traffic for STRRAT",
+            "IP address check by infected Windows host": "port 80 - ip-api.com - GET /json/"
+        }
+    },
+    "eventID_4": {
+		"background":"Reviewing the alerts in your network environment, you find indicators that a host within your environment has been infected with malware..",
+		"url":"https://www.malware-traffic-analysis.net/2024/09/04/index.html",
+		"executive_summary":"As early as Wednesday 2024-09-04 at 17:35 UTC, a Windows host used by Andrew Fletcher showed signs of being infected with Koi Stealer malware.",
+		"Victim_Host_Name":"DESKTOP-RNVO9AT",
+		"Victim_IP_Address":"172.17.0.99",
+		"Victim_MAC_Address":"18:3d:a2:b6:8d:c4",
+		"Victim_Windows_User_Account_Name":"afletcher",
+		"IOC": {
+			"Malicious_requests":["79.124.78.197:80 – 79.124.78.197 – POST /foots.php", "79.124.78.197:80 – 79.124.78.197 – POST /index.php?id&subid=qIOuKk7U", "79.124.78.197:80 – 79.124.78.197 – POST /index.php"],
+            "Proof_of_infection":"HTTPS traffic to http://www.bellantonicioccolato.it"
+        },
+		"Notes": "Based on our pcap alone, we cannot 100% confirm the traffic here is related to the Koi Stealer infection, but we could add it to the indicators of compromise section as likely or probably related."
+	},
+    "eventID_5": {
+        "background": "",
+        "url": "https://www.malware-traffic-analysis.net/2022/03/21/index3.html",
+        "executive_summary": "On Monday 2022-03-21 at approximately 20:58 UTC, a Windows host used by Patrick Zimmerman was infected with IcedID (Bokbot) malware that led to Cobalt Strike.",
+        "Victim_Host_Name": "DESKTOP-5QS3D5D",
+        "Victim_IP_Address": "10.0.18.14",
+        "Victim_MAC_Address": "00:60:52:b7:33:0f",
+        "Victim_Windows_User_Account_Name": "patrick.zimmerman",
+        "IOC": {
+            "Domains and IP addresses for IcedID (Bokbot)": [
+                "188.166.154.118 port 80 - oceriesfornot.top - GET /",
+                "157.245.142.66 port 443 - antnosience.com - HTTPS traffic",
+                "160.153.32.99 port 443 - suncoastpinball.com - HTTPS traffic",
+                "157.245.142.66 port 443 - otectagain.top - HTTPS traffic",
+                "91.193.16.181 port 443 - seaskysafe.com - HTTPS traffic",
+                "91.193.16.181 port 443 - dilimoretast.com - HTTPS traffic"
+            ],
+            "Suspicious traffic to file sharing domains": [
+                "port 443 - filebin.net - HTTPS traffic",
+                "port 443 - situla.bitbit.net - HTTPS traffic"
+            ],
+            "Domains and IP addresses for Cobalt Strike": [
+                "23.227.198.203 port 757 - bupdater.com - HTTPS traffic"
+            ]
+        }
+    },
+    "eventID_6": {
+        "background": "",
+        "url": "https://www.malware-traffic-analysis.net/2022/01/07/index.html",
+        "executive_summary": "On 2022-01-07 at approximately 16:07 UTC, a Windows host used by Steve Smith was infected with OskiStealer malware.",
+        "Victim_Host_Name": "DESKTOP-GXMYNO2",
+        "Victim_IP_Address": "192.168.1.216",
+        "Victim_MAC_Address": "95:5c:8e:32:58:f9",
+        "Victim_Windows_User_Account_Name": "steve.smith",
+        "IOC": {
+            "Malicious traffic": [
+                "2.56.57.108 port 80 - 2.56.57.108 - POST /osk//1.jpg HTTP/1.1",
+                "2.56.57.108 port 80 - 2.56.57.108 - POST /osk//2.jpg HTTP/1.1",
+                "2.56.57.108 port 80 - 2.56.57.108 - POST /osk//3.jpg HTTP/1.1",
+                "2.56.57.108 port 80 - 2.56.57.108 - POST /osk//4.jpg HTTP/1.1",
+                "2.56.57.108 port 80 - 2.56.57.108 - POST /osk//5.jpg HTTP/1.1",
+                "2.56.57.108 port 80 - 2.56.57.108 - POST /osk//6.jpg HTTP/1.1",
+                "2.56.57.108 port 80 - 2.56.57.108 - POST /osk//7.jpg HTTP/1.1",
+                "2.56.57.108 port 80 - 2.56.57.108 - POST /osk//main.php HTTP/1.1",
+                "2.56.57.108 port 80 - 2.56.57.108 - POST /osk/ HTTP/1.1 (zip)"
+            ],
+            "SHA256 hash": [
+                "16574f51785b0e2fc29c2c61477eb47bb39f714829999511dc8952b43ab17660",
+                "a770ecba3b08bbabd0a567fc978e50615f8b346709f8eb3cfacf3faab24090ba",
+                "3fe6b1c54b8cf28f571e0c5d6636b4069a8ab00b4f11dd842cfec00691d0c9cd",
+                "334e69ac9367f708ce601a6f490ff227d6c20636da5222f148b25831d22e13d4",
+                "e2935b5b28550d47dc971f456d6961f20d1633b4892998750140e0eaa9ae9d78",
+                "43536adef2ddcc811c28d35fa6ce3031029a2424ad393989db36169ff2995083",
+                "c40bb03199a2054dabfc7a8e01d6098e91de7193619effbd0f142a7bf031c14d"
+            ]
+        },
+        "Notes": "The IP address 2.56.57.108 is associated with an EXE sample tagged as OskiStealer at bazaar.abuse.ch. Any HTTP request that ends with .jpg and returns an EXE or DLL (first two bytes show up as ASCII characters MZ after the HTTP response headers) is suspicious, and likely part of some malicious activity. None of these DLL files returned from the .jpg URLs are inherently malicious on their own. But they are used for this specific infection, so they are IOCs, even if they're not malicious."
+    },
+    "eventID_7": {
+        "background": "",
+        "url": "https://www.malware-traffic-analysis.net/2021/09/10/index.html",
+        "executive_summary": "On 2021-09-10 at approximately 23:17 UTC, a Windows host used by Hobart Gunnarsson was infected with BazarLoader through the TA551 (Shathak) campaign.",
+        "Victim_Host_Name": "DESKTOP-KKITB6Q",
+        "Victim_IP_Address": "10.9.10.102",
+        "Victim_MAC_Address": "00:4f:49:b1:e8:c3",
+        "Victim_Windows_User_Account_Name": "hobart.gunnarsson",
+        "IOC": {
+            "Traffic to retrieve BazarLoader DL": "194.62.42.206 port 80 - simpsonsavingss.com - GET /bmdff/BhoHsCtZ/MLdmpfjaX/5uFG3Dz7yt/date1?BNLv65=pAAS",
+            "Bazar C2 traffic": [
+                "167.172.37.9 port 443 - HTTPS traffic",
+                "94.158.245.52 port 443 - HTTPS traffic"
+            ]
+        },
+        "Notes": "The URL with /bmdff/ in the GET request returned a 64-bit DLL for BazarLoader. This /bmdff/ pattern has been used for the previous several weeks by the TA551 (Shathak) campaign."
+    },
+    "eventID_8": {
+        "background": "",
+        "url": "https://www.malware-traffic-analysis.net/2021/08/19/index.html",
+        "executive_summary": "On 2021-08-19 at approximately 19:40 UTC, a Windows host used by Monica Steele was infected with Trickbot malware.",
+        "Victim_Host_Name": "DEKSTOP-M1TFHB6",
+        "Victim_IP_Address": "10.8.19.101",
+        "Victim_MAC_Address": "00:08:02:1c:47:ae",
+        "Victim_Windows_User_Account_Name": "monica.steele",
+        "IOC": {
+            "URL for Trickbot DLL": "185.244.41.29 port 80 - 185.244.41.29 - GET /ooiwy.pdf",
+            "Trickbot post-infection traffic": [
+                "port 443 - api.ipify.org - GET / [IP address check by infected host]",
+                "46.99.175.149 port 443 - HTTPS traffic",
+                "182.253.210.130 port 443 - HTTPS traffic",
+                "103.148.41.195 port 443 - 103.148.41.195:443 - POST /rob124/DESKTOP-M1TFHB6_W10019043.0CB9C3AE3FA9B1267DFC20141CDE9D84/90/"
+            ]
+        }
+    },
+    "eventID_9": {
+        "background": "",
+        "url": "https://www.malware-traffic-analysis.net/2021/02/08/index.html",
+        "executive_summary": "On 2021-02-08 at approximately 16:00 UTC, a Windows host used by Bill Cook was infected with Hancitor, Cobalt Strike, and Ficker Stealer malware.",
+        "Victim_Host_Name": "DESKTOP-MGVG60Z",
+        "Victim_IP_Address": "10.2.8.101",
+        "Victim_MAC_Address": "00:12:79:41:c2:aa",
+        "Victim_Windows_User_Account_Name": "bill.cook",
+        "IOC": {
+            "Traffic for Hancitor": [
+                "45.124.85.55 port 80 - tonmatdoanminh.com - GET /uninviting.php",
+                "port 80 - api.ipify.org - GET /",
+                "213.5.229.12 port 80 - satursed.com - POST /8/forum.php"
+            ],
+            "Traffic for Cobalt Strike": [
+                "8.208.10.147 port 80 - roanokemortgages.com - GET /0801.bin",
+                "8.208.10.147 port 80 - roanokemortgages.com - GET /0801s.bin",
+                "198.211.10.238 port 8080 - 198.211.10.238:8080 - GET /6Aov",
+                "198.211.10.238 port 443 - HTTPS traffic",
+                "198.211.10.238 port 8080 - 198.211.10.238:8080 - GET /ca",
+                "198.211.10.238 port 8080 - 198.211.10.238:8080 - POST/submit.php?id=3275377518"
+            ],
+            "Traffic for Ficker Stealer": [
+                "8.208.10.147 port 80 - roanokemortgages.com - GET /6lhjgfdghj.exe",
+                "port 80 - api.ipify.org - GET /?format=xml",
+                "185.100.65.29 port 80 - sweyblidian.com - TCP traffic caused by FickerStealer"
+            ]
+        },
+        "Notes": "There is a malicious Word document for Hancitor you can get from this exercise pcap. It's encoded as base64 text in a web page. Export this page from the pcap, then open the extracted HTML page in a web browser."
+    }
+}

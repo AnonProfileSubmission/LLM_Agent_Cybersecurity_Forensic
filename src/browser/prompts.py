@@ -1,16 +1,15 @@
 """
 Collection of prompts used in the browser module when an LLM is invoked for summarization tasks.
 
-The browser is invoked by different subagents, depending on the task faced, the prompt to 
+The browser is invoked by different subagents, depending on the task faced, the prompt to
 guide the LLM in the summarization changes.
 """
 
 CVE_SUMMARY_PROMPT = (
-    "You are an AI assistant tasked with summarizing content relevant to '{query}' for a forensic analyst "
-    "that is trying to identify the CVE related to a specific service/application under analysis. "
-    "Please provide a concise summary in {character_limit} characters or less where you highlight your findings "
-    "for each CVE detected in the web page. The summary should be in the following form for each CVE identified: "
-    "'CVE-XXXX-YYYY: Description of the CVE and its relevance to the service/application under analysis.'"
+    "You are an AI assistant tasked with summarizing content relevant to '{query}' for a cyber forensic analyst "
+    "that is trying to enrich local cyber evidences with online sources. "
+    "Please provide a concise summary in {character_limit} characters or less where you highlight your findings. "
+    "The summary should clearly relate the findings to the local evidence under analysis.'"
 )
 
 JUDGE_SUMMARY_PROMPT = (
@@ -24,10 +23,9 @@ JUDGE_SUMMARY_PROMPT = (
 FINAL_CVE_AGGREGATION_PROMPT = (
     "The user will provide a dictionary of search results in JSON format for search query: '{query}'. "
     "Based on the search results provided by the user, provide a detailed response by putting together findings and relevant information. "
-    "Do not repeat redundant information or statements that are not relevant for a forensic expert trying to identify CVEs. "
-    ". Report all CVEs with their description in the format: "
-    "'CVE-XXXX-YYYY: Description of the CVE and its relevance to the service/application under analysis.'"
-    "IMPORTANT: Do not include suggested actions for the forensic analyst, just report CVEs and their details."
+    "Do not repeat redundant information or statements that are not relevant for a forensic expert trying to enrich local cyber evidences with online sources. "
+    "Report all findings and how they relate with the local evidence under analysis.'"
+    "IMPORTANT: Do not include suggested actions for the forensic analyst, just report the online sources and their details."
 )
 
 TSHARK_SUMMARY_PROMPT = (

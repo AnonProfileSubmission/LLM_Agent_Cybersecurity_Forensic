@@ -13,14 +13,22 @@ from .summarization_utils import SummarizationHandler
 def get_google_keys():
     return sorted(
         [(k, v) for k, v in os.environ.items() if k.startswith("GOOGLE_API_KEY_")],
-        key=lambda x: int(x[0].split("_")[-1])
+        key=lambda x: int(x[0].split("_")[-1]),
     )
 
 
-
-
 class Context_generator:
-    def __init__(self, llm, research="CVE", strategy="LLM_summary", embedder="openai", n_documents_per_source=10, context_length=5,context_window_size=8192, verbose=False):
+    def __init__(
+        self,
+        llm,
+        research="CVE",
+        strategy="LLM_summary",
+        embedder="openai",
+        n_documents_per_source=10,
+        context_length=5,
+        context_window_size=8192,
+        verbose=False,
+    ):
         self.llm = llm
         self.verbose = verbose
         self.research = research
@@ -28,18 +36,25 @@ class Context_generator:
         self.n_documents_per_source = n_documents_per_source
         self.context_length = context_length
         self.chunker = ChunkingHandler(embedder=embedder, verbose=verbose)
-        self.summarizer = SummarizationHandler(llm, research=research, verbose=verbose,context_window_size=context_window_size)
+        self.summarizer = SummarizationHandler(
+            llm,
+            research=research,
+            verbose=verbose,
+            context_window_size=context_window_size,
+        )
 
         self.google_keys = [v for _, v in get_google_keys()]
         self.google_cse_id = os.getenv("GOOGLE_CSE_ID")
         self.current_key_index = 0
 
         if not self.google_keys or not self.google_cse_id:
-            raise ValueError("At least one GOOGLE_API_KEY and GOOGLE_CSE_ID must be set as environment variables.")
+            raise ValueError(
+                "At least one GOOGLE_API_KEY and GOOGLE_CSE_ID must be set as environment variables."
+            )
 
     def is_text_clean(self, text):
         try:
-            text.encode('utf-8').decode('utf-8')
+            text.encode("utf-8").decode("utf-8")
             return True
         except UnicodeDecodeError:
             return False
@@ -50,14 +65,13 @@ class Context_generator:
             if not response.headers.get("Content-Type", "").startswith("text/html"):
                 return None
 
-            soup = BeautifulSoup(response.content, 'html.parser')
-            for tag in soup(['script', 'style']):
+            soup = BeautifulSoup(response.content, "html.parser")
+            for tag in soup(["script", "style"]):
                 tag.decompose()
-            text = re.sub(r'\s+', ' ', soup.get_text()).strip()
+            text = re.sub(r"\s+", " ", soup.get_text()).strip()
             return text if len(text) >= 50 and self.is_text_clean(text) else None
         except:
             return None
-
 
     def get_web_search_results(self, query):
         print("Searching with Google API...")
@@ -68,10 +82,19 @@ class Context_generator:
 
         while self.current_key_index < len(self.google_keys) and max_retries > 0:
             api_key = self.google_keys[self.current_key_index]
-            params = {'q': query, 'key': api_key, 'cx': self.google_cse_id, 'start': start_index}
+            params = {
+                "q": query,
+                "key": api_key,
+                "cx": self.google_cse_id,
+                "start": start_index,
+            }
 
             try:
-                response = requests.get("https://www.googleapis.com/customsearch/v1", params=params, timeout=10)
+                response = requests.get(
+                    "https://www.googleapis.com/customsearch/v1",
+                    params=params,
+                    timeout=10,
+                )
                 if response.status_code == 200:
                     results = response.json().get("items", [])
                     for item in tqdm(results, disable=not self.verbose, leave=False):
@@ -84,12 +107,16 @@ class Context_generator:
                     return documents
 
                 elif response.status_code in [403, 429]:
-                    print(f"API key #{self.current_key_index+1} exhausted or invalid. Trying next key...")
+                    print(
+                        f"API key #{self.current_key_index+1} exhausted or invalid. Trying next key..."
+                    )
                     self.current_key_index += 1
                     max_retries -= 1
                     continue
                 else:
-                    print(f"Google API returned status {response.status_code}. Skipping...")
+                    print(
+                        f"Google API returned status {response.status_code}. Skipping..."
+                    )
                     break
 
             except Exception as e:
@@ -112,16 +139,26 @@ class Context_generator:
 
         if self.strategy == "LLM_summary":
             summaries = {}
-            for url, doc in tqdm(docs, desc="Summarizing", disable=not self.verbose, leave=False):
+            for url, doc in tqdm(
+                docs, desc="Summarizing", disable=not self.verbose, leave=False
+            ):
                 summary, in_tok, out_tok = self.summarizer.summarize(doc, query)
                 input_token_count += in_tok
                 output_token_count += out_tok
                 if summary:
                     summaries[url] = summary
             if not summaries:
-                return ("No relevant summaries could be extracted.", input_token_count, output_token_count)
+                return (
+                    "No relevant summaries could be extracted.",
+                    input_token_count,
+                    output_token_count,
+                )
             final_summary, agg_in, agg_out = self.summarizer.aggregate(summaries, query)
-            return (final_summary, input_token_count + agg_in, output_token_count + agg_out)
+            return (
+                final_summary,
+                input_token_count + agg_in,
+                output_token_count + agg_out,
+            )
 
         elif self.strategy == "chunking":
             chunks = []
@@ -129,17 +166,33 @@ class Context_generator:
                 chunks.extend(self.chunker.chunk_text(doc))
             if not chunks:
                 return "No content found for chunking."
-            top_chunks = self.chunker.embedd_and_rank_text(query, chunks, self.context_length)
-            return ('\n'.join(f"Information {i+1}: {chunk}" for i, chunk in enumerate(top_chunks)), input_token_count, output_token_count)
+            top_chunks = self.chunker.embedd_and_rank_text(
+                query, chunks, self.context_length
+            )
+            return (
+                "\n".join(
+                    f"Information {i+1}: {chunk}" for i, chunk in enumerate(top_chunks)
+                ),
+                input_token_count,
+                output_token_count,
+            )
 
         else:
             raise NotImplementedError(f"Strategy {self.strategy} not supported.")
+
 
 # Tool wrapper
 class WebQuickSearchArgs(BaseModel):
     query: str
 
-def web_quick_search_func(query: str, llm_model: object,context_window_size: int = 8192, research: str = "CVE", strategy: str = "LLM_summary") -> tuple[str, int, int]:
+
+def web_quick_search_func(
+    query: str,
+    llm_model: object,
+    context_window_size: int = 8192,
+    research: str = "CVE",
+    strategy: str = "LLM_summary",
+) -> tuple[str, int, int]:
     try:
         rag_model = Context_generator(
             llm=llm_model,
@@ -154,20 +207,23 @@ def web_quick_search_func(query: str, llm_model: object,context_window_size: int
     except Exception as e:
         return (f"An error occurred during the web search: {str(e)}", 0, 0)
 
+
 web_quick_search = Tool(
     name="web_quick_search",
-    description="""Perform a quick web search. 
-    Use this tool to find the latest information on a specific topic if it is not in your memory
-    or training knowledge. You can call this tool only once per step.
-    Args:
-        query: The search query. 
-    IMPORTANT: 
-    -Do not report a CVE code in the search query, just report the service name (with the version, if possible) and the type of 
-    attack exploited, if you know it.
-    - Do not iterate repating the same or similar queries many times, as this will not improve the results.
+    description="""Perform a web search to gather external context and relate it to the local evidence.
+
+    Use cases (examples, not exhaustive):
+        - Check public information about software/protocol issues, vulnerabilities, or exploit techniques.
+        - Validate publicly known Indicators of Compromise (e.g., domains, IPs, file hashes).
+        - Identify commonly referenced names (e.g., malware families or campaigns) related to known indicators.
+
+    Guidelines:
+        - One call per step. Avoid repeating similar queries.
+        - Do not include private or internal data in queries (e.g., internal IPs/hostnames, usernames, device names).
+        - External web search must be used to complement local evidence, not replace it.
     """,
     args_schema=WebQuickSearchArgs,
-    func=web_quick_search_func
+    func=web_quick_search_func,
 )
 
 __all__ = ["web_quick_search", "web_quick_search_func"]

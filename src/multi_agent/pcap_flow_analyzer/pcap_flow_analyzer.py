@@ -30,7 +30,8 @@ async def pcap_flow_analyzer(
     If the tcp flow is too long, it discards part of it in the middle to fit
     an allocation size constraint.
     """
-
+    #DEBUG
+    print(f"Analyzing stream number: {stream_number} from pcap: {pcap_path}")
     input_token_count = 0
     output_token_count = 0
     configurable = Configuration.from_runnable_config(config)

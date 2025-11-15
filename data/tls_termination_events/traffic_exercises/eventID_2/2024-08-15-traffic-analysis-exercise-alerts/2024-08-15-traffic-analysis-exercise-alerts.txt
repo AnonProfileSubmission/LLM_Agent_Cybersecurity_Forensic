@@ -1,0 +1,96 @@
+------------------------------------------------------------------------
+Count:27 Event#3.631 2024-08-15 00:09 UTC
+ET DNS Standard query response, Name Error
+10.8.15.4 -> 10.8.15.133
+IPVer=4 hlen=5 tos=0 dlen=150 ID=19514 flags=0 offset=0 ttl=128 chksum=48004
+Protocol: 17 sport=53 -> dport=53383
+
+len=130 chksum=27234
+------------------------------------------------------------------------
+Count:2 Event#3.633 2024-08-15 00:09 UTC
+ET INFO Terse Request for .txt - Likely Hostile
+10.8.15.133 -> 23.205.110.48
+IPVer=4 hlen=5 tos=0 dlen=151 ID=0 flags=0 offset=0 ttl=0 chksum=6872
+Protocol: 6 sport=49671 -> dport=80
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=36449 chksum=0
+------------------------------------------------------------------------
+Count:1 Event#3.634 2024-08-15 00:09 UTC
+ET INFO Microsoft Connection Test
+10.8.15.133 -> 23.205.110.48
+IPVer=4 hlen=5 tos=0 dlen=151 ID=0 flags=0 offset=0 ttl=0 chksum=6872
+Protocol: 6 sport=49671 -> dport=80
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=36449 chksum=0
+------------------------------------------------------------------------
+Count:148 Event#3.635 2024-08-15 00:09 UTC
+ET POLICY TLSv1.0 Used in Session
+10.8.15.133 -> 23.33.138.184
+IPVer=4 hlen=5 tos=0 dlen=330 ID=0 flags=0 offset=0 ttl=0 chksum=65096
+Protocol: 6 sport=49672 -> dport=443
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=62100 chksum=0
+------------------------------------------------------------------------
+Count:5 Event#3.637 2024-08-15 00:09 UTC
+GPL RPC kerberos principal name overflow TCP
+10.8.15.133 -> 10.8.15.4
+IPVer=4 hlen=5 tos=0 dlen=292 ID=4991 flags=2 offset=0 ttl=128 chksum=46012
+Protocol: 6 sport=49676 -> dport=88
+
+Seq=3254969383 Ack=473947260 Off=5 Res=0 Flags=***AP*** Win=1026 urp=49696 chksum=0
+------------------------------------------------------------------------
+Count:11 Event#3.683 2024-08-15 00:10 UTC
+GPL ICMP_INFO Destination Unreachable Port Unreachable
+10.8.15.133 -> 10.8.15.4
+IPVer=4 hlen=5 tos=0 dlen=207 ID=5466 flags=0 offset=0 ttl=128 chksum=62011
+Protocol: 1 Type=3 Code=3 chksum=11334 ID= seq=
+Orig Protocol=17  Orig Src IP:Port->Dst IP:Port 10.8.15.4:53->10.8.15.133:59615
+------------------------------------------------------------------------
+Count:4 Event#3.766 2024-08-15 00:12 UTC
+ET POLICY Binary Download Smaller than 1 MB Likely Hostile
+72.5.43.29 -> 10.8.15.133
+IPVer=4 hlen=5 tos=0 dlen=1404 ID=0 flags=0 offset=0 ttl=0 chksum=10446
+Protocol: 6 sport=80 -> dport=49810
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=37546 chksum=0
+------------------------------------------------------------------------
+Count:4 Event#3.770 2024-08-15 00:12 UTC
+ET TROJAN Possible Windows executable sent when remote host claims to send html content
+72.5.43.29 -> 10.8.15.133
+IPVer=4 hlen=5 tos=0 dlen=1404 ID=0 flags=0 offset=0 ttl=0 chksum=10446
+Protocol: 6 sport=80 -> dport=49810
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=37546 chksum=0
+------------------------------------------------------------------------
+Count:4 Event#3.774 2024-08-15 00:12 UTC
+ET POLICY PE EXE or DLL Windows file download HTTP
+72.5.43.29 -> 10.8.15.133
+IPVer=4 hlen=5 tos=0 dlen=1500 ID=0 flags=0 offset=0 ttl=0 chksum=10350
+Protocol: 6 sport=80 -> dport=49810
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=38599 chksum=0
+------------------------------------------------------------------------
+Count:4 Event#3.778 2024-08-15 00:12 UTC
+ET INFO SUSPICIOUS Dotted Quad Host MZ Response
+72.5.43.29 -> 10.8.15.133
+IPVer=4 hlen=5 tos=0 dlen=1500 ID=0 flags=0 offset=0 ttl=0 chksum=10350
+Protocol: 6 sport=80 -> dport=49810
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=38599 chksum=0
+------------------------------------------------------------------------
+Count:307 Event#3.783 2024-08-15 00:13 UTC
+ETPRO INFO Incorrect Spacing of UA Variable M3
+10.8.15.133 -> 72.5.43.29
+IPVer=4 hlen=5 tos=0 dlen=489 ID=0 flags=0 offset=0 ttl=0 chksum=11361
+Protocol: 6 sport=49818 -> dport=80
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=63378 chksum=0
+------------------------------------------------------------------------
+Count:15 Event#3.784 2024-08-15 00:13 UTC
+ET INFO GENERIC SUSPICIOUS POST to Dotted Quad with Fake Browser 1
+10.8.15.133 -> 72.5.43.29
+IPVer=4 hlen=5 tos=0 dlen=635 ID=0 flags=0 offset=0 ttl=0 chksum=11215
+Protocol: 6 sport=49818 -> dport=80
+
+Seq=0 Ack=0 Off=5 Res=0 Flags=******** Win=0 urp=32138 chksum=0
+
