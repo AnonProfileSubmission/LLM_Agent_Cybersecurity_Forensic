@@ -13,14 +13,15 @@ The system first analyses each tcp flow through a PCAP_flows_analyzer, then inst
 
 ## How to switch architecture  
 
-We have designed and experimented with **five different agent architectures**, each exploring a distinct input and analysis workflow.  
-All architectures are available in this repository, organized into separate Git branches:  
+We have designed and experimented with **four different agent architectures**, each exploring a distinct input and analysis workflow.  
+All architectures and use cases are available in this repository, organized into separate Git branches:  
 
 - **main** → *Flow Reporter*: a lightweight pipeline that generates forensic reports directly from network flows.  
 - **single_agent** → *Single-Agent Baseline*: a minimal architecture where a single agent handles the full forensic analysis.
 - **tshark_expert** → *Tshark Expert*: a multi-agent setup focused on executing arbitrary `tshark` commands to extract insights from PCAP traces.  
 - **tshark_expert_plus_logs** → *Tshark Expert + Logs*: an extended version that combines `tshark`-based analysis with system log inspection for richer context.  
 reasoning for more accurate CVE identification.  
+- **malware_traffic** → makes use of the *Flow Reporter* architecture to analyze traffic captured on devices compromised by malware. It analyzes traffic inspired by real-world scenarios (from [here](https://www.malware-traffic-analysis.net/training-exercises.html)), extracts Indicators of Compromise (IOCs), profiles the victim host (hostname, IP, MAC, Windows username), and generates a structured incident report describing the compromise and the malware's network behavior.
 
 Each branch represents a step in our exploration of how **different coordination strategies (single-agent vs. multi-agent pipelines)** impact performance, accuracy, and token efficiency when applied to **cybersecurity forensic tasks**.  
 
